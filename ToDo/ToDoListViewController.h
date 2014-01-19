@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ToDoListViewController.h
 //  ToDo
 //
 //  Created by Vasanthy Kolluri on 1/18/14.
@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddTaskViewController.h"
 
-@interface ViewController : UIViewController
+@interface ToDoListViewController : UITableViewController <AddTaskViewControllerDelegate>
 
 @end
