@@ -7,11 +7,11 @@
 //
 
 #import "ToDoListViewController.h"
+#import "TaskCell.h"
 
 @interface ToDoListViewController ()
 
 @property(nonatomic, strong) NSMutableArray *tasks;
-- (void)dump;
 
 @end
 
@@ -33,8 +33,9 @@
     self.tasks = [[NSMutableArray alloc] init];
     
     NSLog(@"ViewDiDLoad");
-
-    //[self.tasks addObject:@"Task-1"];
+    
+    UINib *taskCellNib = [UINib nibWithNibName:@"TaskCell" bundle:nil];
+    [self.tableView registerNib:taskCellNib forCellReuseIdentifier:@"TaskCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -63,12 +64,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"TaskCell";
+    TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     
-    cell.textLabel.text = [self.tasks objectAtIndex:indexPath.row];
+    cell.TaskTextField.text = [self.tasks objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -86,7 +87,10 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
         // Delete the row from the data source
+        [self.tasks removeObjectAtIndex:indexPath.row];
+        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -99,17 +103,21 @@
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
+    NSString *movedTask = [self.tasks objectAtIndex:fromIndexPath.row];
+    [self.tasks removeObjectAtIndex:fromIndexPath.row];
+    [self.tasks insertObject:movedTask atIndex:toIndexPath.row];
 }
-*/
 
-/*
+
+
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
+ */
+
 
 
 #pragma mark - Navigation
@@ -118,16 +126,20 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSLog(@"Prepare for Segue");
-    AddTaskViewController *atvc = (AddTaskViewController *)segue.destinationViewController;
-    atvc.delegate = self;
     
-    
+    if ([segue.identifier isEqualToString:@"AddTaskSegue"]) {
+        AddTaskViewController *atvc = (AddTaskViewController *)segue.destinationViewController;
+        atvc.delegate = self;
+    }
 }
 
 - (void)addTaskViewController:(AddTaskViewController *)controller newTask:(NSString *)task
 {
-    NSLog(@"In the delegated method");
+    NSLog(@"addTaskViewController delegate method");
     NSLog(@"%@", task);
+    
+    if (task.length == 0)
+        return;
     
     [self.tasks addObject:task];
     
@@ -135,5 +147,8 @@
 
 }
 
-
+- (IBAction)EditButtonPressed:(id)sender {
+    self.editing = !self.editing;
+}
 @end
+

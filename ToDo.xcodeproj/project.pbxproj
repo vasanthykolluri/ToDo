@@ -22,6 +22,8 @@
 		AA75453B188B6B22009FAC1B /* ToDoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA75453A188B6B22009FAC1B /* ToDoTests.m */; };
 		AA754546188B6B65009FAC1B /* ToDoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA754545188B6B65009FAC1B /* ToDoListViewController.m */; };
 		AA75454C188B88CE009FAC1B /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA75454B188B88CE009FAC1B /* AddTaskViewController.m */; };
+		AA754552188CFA5D009FAC1B /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA754551188CFA5D009FAC1B /* TaskCell.m */; };
+		AA754554188CFA78009FAC1B /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA754553188CFA78009FAC1B /* TaskCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,9 @@
 		AA754545188B6B65009FAC1B /* ToDoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoListViewController.m; sourceTree = "<group>"; };
 		AA75454A188B88CE009FAC1B /* AddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTaskViewController.h; sourceTree = "<group>"; };
 		AA75454B188B88CE009FAC1B /* AddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTaskViewController.m; sourceTree = "<group>"; };
+		AA754550188CFA5D009FAC1B /* TaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCell.h; sourceTree = "<group>"; };
+		AA754551188CFA5D009FAC1B /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
+		AA754553188CFA78009FAC1B /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +129,9 @@
 				AA754545188B6B65009FAC1B /* ToDoListViewController.m */,
 				AA75454A188B88CE009FAC1B /* AddTaskViewController.h */,
 				AA75454B188B88CE009FAC1B /* AddTaskViewController.m */,
+				AA754550188CFA5D009FAC1B /* TaskCell.h */,
+				AA754551188CFA5D009FAC1B /* TaskCell.m */,
+				AA754553188CFA78009FAC1B /* TaskCell.xib */,
 			);
 			path = ToDo;
 			sourceTree = "<group>";
@@ -233,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA754554188CFA78009FAC1B /* TaskCell.xib in Resources */,
 				AA754528188B6B22009FAC1B /* Images.xcassets in Resources */,
 				AA75451A188B6B22009FAC1B /* InfoPlist.strings in Resources */,
 				AA754523188B6B22009FAC1B /* Main.storyboard in Resources */,
@@ -254,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA754552188CFA5D009FAC1B /* TaskCell.m in Sources */,
 				AA754546188B6B65009FAC1B /* ToDoListViewController.m in Sources */,
 				AA75454C188B88CE009FAC1B /* AddTaskViewController.m in Sources */,
 				AA754520188B6B22009FAC1B /* AppDelegate.m in Sources */,

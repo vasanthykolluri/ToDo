@@ -13,11 +13,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="XNG-9b-yHo">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ToDoCell" id="XNG-9b-yHo">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XNG-9b-yHo" id="YL7-YA-N43">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -28,17 +28,21 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="To Do List" id="Z9O-ox-3y8">
-                        <barButtonItem key="leftBarButtonItem" title="Edit" id="NNW-hu-itB"/>
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="NNW-hu-itB">
+                            <connections>
+                                <action selector="EditButtonPressed:" destination="LPf-mu-fG7" id="Yog-Ou-mAZ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="UTo-H6-u7v">
                             <connections>
-                                <segue destination="qbB-1B-elN" kind="modal" id="lhA-cP-meQ"/>
+                                <segue destination="qbB-1B-elN" kind="modal" identifier="AddTaskSegue" id="lhA-cP-meQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gfZ-Y0-mT8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="639" y="127"/>
+            <point key="canvasLocation" x="-89" y="103"/>
         </scene>
         <!--Add Task View Controller-->
         <scene sceneID="eFV-nT-PnN">
@@ -85,7 +89,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZLa-gY-gGl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1186" y="-216"/>
+            <point key="canvasLocation" x="1174" y="-420"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="x4f-ym-QMH">
@@ -103,7 +107,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Cy-vU-xha" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="183" y="127"/>
+            <point key="canvasLocation" x="-670" y="103"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
