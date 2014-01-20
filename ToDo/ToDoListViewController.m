@@ -73,6 +73,7 @@
     return cell;
 }
 
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,7 +83,7 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -97,9 +98,8 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
-/*
+
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
@@ -116,7 +116,6 @@
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
- */
 
 
 
@@ -148,7 +147,18 @@
 }
 
 - (IBAction)EditButtonPressed:(id)sender {
+
+    if (self.tasks.count == 0 && !self.editing) {
+        return;
+    }
+    
     self.editing = !self.editing;
+    
+    if (self.editing) {
+       [sender setTitle:@"Done"];
+    } else {
+       [sender setTitle:@"Edit"];
+    }
 }
 @end
 
