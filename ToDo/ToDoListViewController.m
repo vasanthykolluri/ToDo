@@ -30,12 +30,33 @@
 {
     [super viewDidLoad];
 
-    self.tasks = [[NSMutableArray alloc] init];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *saved_tasks = [userDefaults objectForKey:@"tasks_key"];
+    
+    if (saved_tasks.count == 0) {
+        NSLog(@"savd_tasks is nul");
+        self.tasks = [[NSMutableArray alloc] init];
+    }
+    else {
+        NSLog(@"savd_tasks is not nul");
+
+        self.tasks = saved_tasks;
+    }
     
     NSLog(@"ViewDiDLoad");
     
     UINib *taskCellNib = [UINib nibWithNibName:@"TaskCell" bundle:nil];
     [self.tableView registerNib:taskCellNib forCellReuseIdentifier:@"TaskCell"];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"Saving tasks....");
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:self.tasks forKey:@"tasks_key"];
+    [userDefaults synchronize];
+    
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -143,6 +164,7 @@
     [self.tasks addObject:task];
     
     NSLog(@"count=%d", self.tasks.count);
+
 
 }
 
