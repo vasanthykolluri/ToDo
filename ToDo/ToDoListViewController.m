@@ -33,35 +33,19 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *saved_tasks = [userDefaults objectForKey:@"tasks_key"];
     
-    if (saved_tasks.count == 0) {
-        NSLog(@"savd_tasks is nul");
+    if (saved_tasks == nil) {
         self.tasks = [[NSMutableArray alloc] init];
     }
     else {
-        NSLog(@"savd_tasks is not nul");
-
         self.tasks = saved_tasks;
     }
-    
-    NSLog(@"ViewDiDLoad");
     
     UINib *taskCellNib = [UINib nibWithNibName:@"TaskCell" bundle:nil];
     [self.tableView registerNib:taskCellNib forCellReuseIdentifier:@"TaskCell"];
 }
-- (void)viewWillDisappear:(BOOL)animated
-{
-    NSLog(@"Saving tasks....");
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:self.tasks forKey:@"tasks_key"];
-    [userDefaults synchronize];
-    
-    [super viewWillDisappear:animated];
-}
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"ViewWillAppear");
     [self.tableView reloadData];
 }
 
@@ -114,6 +98,9 @@
         [self.tasks removeObjectAtIndex:indexPath.row];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults synchronize];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -127,6 +114,8 @@
     NSString *movedTask = [self.tasks objectAtIndex:fromIndexPath.row];
     [self.tasks removeObjectAtIndex:fromIndexPath.row];
     [self.tasks insertObject:movedTask atIndex:toIndexPath.row];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults synchronize];
 }
 
 
@@ -145,8 +134,6 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"Prepare for Segue");
-    
     if ([segue.identifier isEqualToString:@"AddTaskSegue"]) {
         AddTaskViewController *atvc = (AddTaskViewController *)segue.destinationViewController;
         atvc.delegate = self;
@@ -155,17 +142,14 @@
 
 - (void)addTaskViewController:(AddTaskViewController *)controller newTask:(NSString *)task
 {
-    NSLog(@"addTaskViewController delegate method");
-    NSLog(@"%@", task);
-    
     if (task.length == 0)
         return;
     
     [self.tasks addObject:task];
     
-    NSLog(@"count=%d", self.tasks.count);
-
-
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:self.tasks forKey:@"tasks_key"];
+    [userDefaults synchronize];
 }
 
 - (IBAction)EditButtonPressed:(id)sender {

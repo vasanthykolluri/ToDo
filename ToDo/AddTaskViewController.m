@@ -43,9 +43,7 @@
 
 }
 
-- (IBAction)CancelAction:(id)sender {
-    NSLog(@"Cancel Action");
-    
+- (IBAction)CancelAction:(id)sender {    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end
