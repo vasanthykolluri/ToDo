@@ -100,6 +100,7 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:self.tasks forKey:@"tasks_key"];
         [userDefaults synchronize];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -115,6 +116,7 @@
     [self.tasks removeObjectAtIndex:fromIndexPath.row];
     [self.tasks insertObject:movedTask atIndex:toIndexPath.row];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:self.tasks forKey:@"tasks_key"];
     [userDefaults synchronize];
 }
 
